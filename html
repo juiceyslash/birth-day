@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Parabéns</title>
+</head>
+<body>
+
+<!-- Container para a imagem e texto -->
+<div style="text-align: center; margin-top: 50px;">
+    <!-- Imagem -->
+    <img id="imagemParabens" src="https://fv5-3.failiem.lv/thumb.php?i=566e4ys4vk&v=1&n=Screenshot_20240122-222227.jpg" alt="Parabéns">
+
+    <!-- Texto abaixo da imagem -->
+    <p id="textoAbaixo">🎉🎉👏👏Parabéns👏👏🎉🎉</p>
+</div>
+
+<script>
+    // URL da imagem
+    const imageUrl = "https://fv5-3.failiem.lv/thumb.php?i=566e4ys4vk&v=1&n=Screenshot_20240122-222227.jpg";
+
+    // Texto a ser adicionado acima e abaixo da imagem
+    const textoParabens = "🎉🎉👏👏Parabéns👏👏🎉🎉";
+
+    // Criar elemento de imagem
+    const imagem = new Image();
+    imagem.src = imageUrl;
+
+    // Esperar até que a imagem seja carregada
+    imagem.onload = function () {
+        // Criar um elemento de canvas
+        const canvas = document.createElement("canvas");
+        const contexto = canvas.getContext("2d");
+
+        // Definir as dimensões do canvas para as dimensões da imagem
+        canvas.width = imagem.width;
+        canvas.height = imagem.height;
+
+        // Desenhar a imagem no canvas
+        contexto.drawImage(imagem, 0, 0);
+
+        // Estilo do texto acima
+        contexto.fillStyle = "blue";
+        contexto.font = "bold 30px Arial";
+        contexto.textAlign = "center";
+
+        // Posição do texto acima (centro superior)
+        const xAcima = canvas.width / 2;
+        const yAcima = 40;
+
+        // Adicionar o texto "Parabéns" acima da imagem
+        contexto.fillText(textoParabens, xAcima, yAcima);
+
+        // Estilo do texto abaixo
+        contexto.fillStyle = "blue";
+        contexto.font = "bold 30px Arial";
+        contexto.textAlign = "center";
+
+        // Posição do texto abaixo (centro inferior)
+        const xAbaixo = canvas.width / 2;
+        const yAbaixo = canvas.height - 20;
+
+        // Adicionar o texto "Parabéns" abaixo da imagem
+        contexto.fillText(textoParabens, xAbaixo, yAbaixo);
+
+        // Atualizar a fonte da imagem com o canvas convertido
+        document.getElementById("imagemParabens").src = canvas.toDataURL("image/jpeg");
+
+        // Ocultar o texto HTML abaixo da imagem
+        document.getElementById("textoAbaixo").style.display = "none";
+    };
+</script>
+
+</body>
+</html>
